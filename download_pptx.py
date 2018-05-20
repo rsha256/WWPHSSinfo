@@ -6,6 +6,7 @@ Note: this script outputs a file, named with the date and a .pptx extension
 
 @author: Rahul Shah
 
+
 """
 
 import json
@@ -67,7 +68,7 @@ with open('sample.json') as data_file:
 
     unformatted_date = ((data["board"]["timestamp"])[0:10])
     d = dt.datetime.strptime(unformatted_date, "%Y-%m-%d")
-    day = days[d.weekday()]
+    day = days[d.weekday()] 
     month = calendar.month_name[int(unformatted_date[5:7])]
     day_of_month = unformatted_date[8:10]
     year = unformatted_date[0:4]
@@ -78,11 +79,15 @@ with open('sample.json') as data_file:
 
     p.text = formatted_date
 
-    p.font.bold = True
+    p.font.bold = False
 
     p = tf.add_paragraph()
     p.text = '\n\n' + "Announcements: " + '\n\n' + data["board"]["announcements"]
     p.font.size = Pt(24)
+
+    p = tf.add_paragraph()
+    p.text = '\n\n' + "Quote: " + data["board"]["quote"]
+    p.font.size = Pt(18)
     p.font.bold = True
 
     # optional font color text
@@ -115,9 +120,28 @@ with open('sample.json') as data_file:
     table.columns[2].height = Inches(2.25)
 
     # Don't change this (table headers)
-    table.cell(0, 0).text = 'Period'
-    table.cell(0, 1).text = 'Start'
-    table.cell(0, 2).text = 'End'
+    period = table.cell(0, 0).text = 'Period'
+    start = table.cell(0, 1).text = 'Start'
+    end = table.cell(0, 2).text = 'End'
+
+    period.center(1)
+    start.center(1)
+    end.center(1)
+
+    # period color
+    cell1 = table.rows[0].cells[0]
+    paragraph1 = cell1.text_frame.paragraphs[0]
+    paragraph1.font.color.rgb = RGBColor(00, 255, 00)
+
+    # start color
+    cell1 = table.rows[0].cells[1]
+    paragraph1 = cell1.text_frame.paragraphs[0]
+    paragraph1.font.color.rgb = RGBColor(00, 255, 00)
+
+    # end color
+    cell1 = table.rows[0].cells[2]
+    paragraph1 = cell1.text_frame.paragraphs[0]
+    paragraph1.font.color.rgb = RGBColor(00, 255, 00)
 
     # Put period numbers
     for index, item in enumerate(data["schedule"]):
@@ -163,7 +187,7 @@ with open('sample.json') as data_file:
         shape2 = slide2.shapes
 
         # dimensions of table
-        rows = 15  # TODO make this dynamic - ignore this @Aditya - this is for me
+        rows = len(data["absents"][0]["teacher"]) - 2
         cols = 2
         left = Inches(0.0)
         top = Inches(1.5)
