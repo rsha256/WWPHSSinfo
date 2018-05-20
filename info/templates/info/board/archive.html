@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block title %}Archives{% endblock %}
+
+{% block content %}
+
+    <!-- All boards view -->
+    {% if all_dates is not None %}
+        <a href="{% url 'info:staff_index' %}" class="btn">Back</a> <br><br>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Boards</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for d in all_dates %}
+                <tr class="hoverable">
+                    <th>
+                        <a href="{% url 'info:archive' d.timestamp|date:"m-d-Y" %}">{{ d.timestamp|date:"F d, Y" }}</a>
+                    </th>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+
+    {% else %} <!-- Single Day Board View -->
+
+        <a href="{% url 'info:archive' %}">Back</a> <br>
+
+        <h4 class="center">Archives</h4>
+        <div class="card-panel flow-text orange-text">
+
+            <div class="row">
+                <!-- previous -->
+                <div class="col s4">
+                    {% if previous is not None %}
+                        <span class="left">
+                            <a href="{% url 'info:archive' previous|date:"m-d-Y" %}">< {{ previous|date:"F d, Y" }}</a>
+                        </span>
+                    {% endif %}
+                </div>
+
+                <!-- current -->
+                <div class="col s4">
+                    <span style="margin:auto; display:table;" class="center-align">
+                        {{ data.board.timestamp|date:"F d, Y" }}<br>
+                        <a href="{% url 'info:download_pptx' data.board.timestamp|date:"m-d-Y" %}">Download pptx</a>
+                    </span>
+                </div>
+
+                <!-- next -->
+                <div class="col s4">
+                    {% if next is not None %}
+                        <span class="right">
+                            <a href="{% url 'info:archive' next|date:"m-d-Y" %}">{{ next|date:"F d, Y" }} > </a>
+                        </span>
+                    {% endif %}
+                </div>
+
+            </div>
+
+        </div>
+        <br>
+
+        <!-- Board -->
+        <div class="pink lighten-4">
+            <br>
+            {% include 'info/board/board.html' %}
+
+            <h6>&nbsp;&nbsp;&nbsp; Archived boards cannot be edited</h6><br>
+        </div>
+        <br><br>
+
+
+    {% endif %}
+
+
+{% endblock %}

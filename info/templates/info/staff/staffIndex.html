@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Staff{% endblock %}
+
+{% block content %}
+    <style>.b {
+        background-color: #0d5077 !important;
+    }</style>
+
+    <h1>Staff Portal</h1>
+
+    <a href="{% url 'info:staff_board' %}" class="btn-large waves-effect waves-light white-text b">
+        Board
+    </a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <a href="{% url 'info:archive' %}" class="btn-large waves-effect waves-light white-text pink lighten-1">
+        Archives
+    </a>
+
+    <br><br><br><br>
+
+    <!-- Super Message -->
+    <ul class="collapsible" id="superMSG">
+        <li>
+            <div class="collapsible-header"><i class="material-icons">mail</i>Super Message</div>
+            <div class="collapsible-body">
+                {% include 'info/superMessage/superMessage_form.html' %}
+            </div>
+        </li>
+    </ul>
+
+    <br>
+
+    <!-- Graph -->
+    <ul class="collapsible" id="graph">
+        <li>
+            <div class="collapsible-header"><i class="material-icons">graphic_eq</i>Graph</div>
+            <div class="collapsible-body">
+                {% include 'info/graph/graph_form.html' %}
+            </div>
+        </li>
+    </ul>
+
+
+    <br><br><br><br>
+{% endblock %}
+
+
+{% block customscripts %}
+
+    <script>
+        $(document).ready(function () {
+            $('.collapsible').collapsible();
+
+            var superMSG = M.Collapsible.getInstance(document.querySelector('#superMSG'));
+            var graph = M.Collapsible.getInstance(document.querySelector('#graph'));
+
+            {% if super_message %}
+                 superMSG.open(0);
+            {% endif %}
+
+            {% if graph_data.graph %}
+                 graph.open(0);
+            {% endif %}
+
+        });
+    </script>
+
+{% endblock %}

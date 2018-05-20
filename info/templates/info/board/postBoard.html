@@ -1,0 +1,524 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Staff Board{% endblock %}
+
+{% block content %}
+    <style>.b {
+        background-color: #0d5077 !important;
+    }</style>
+
+    <a href="{% url 'info:staff_index' %}" class="btn">Back</a> <br><br>
+
+    <!-- Posted Board -->
+    {% if data.board %}
+        <section id="posted-board" class="yellow lighten-4">
+
+            <div class="card flow-text orange-text">
+                <div class="card-content">
+                    <span class="card-title">Live Board</span>
+                    This is the board, live on the site. <br> You are seeing this because a board has already been
+                    posted for today. <br>
+
+                    <a href="{% url 'info:download_pptx' data.board.timestamp|date:"Y-m-d" %}">Download pptx</a>
+
+                    <span class="right">
+                        <button class="btn tooltipped z-depth-3" data-position="bottom" data-delay="50"
+                                data-tooltip="Edit"
+                                onclick="showForm()">
+                            <i class="material-icons">mode_edit</i>
+                        </button>
+                    </span>
+
+                </div>
+            </div>
+            <br>
+
+            {% include 'info/board/board.html' %}
+
+        </section>
+    {% endif %}
+
+
+    <!-- Form -->
+    <section id="input-form">
+
+        {% if data.board %}
+            <div class="card-panel">
+                <button class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="cancel"
+                        onclick="hideForm()">
+                    <i class="material-icons">cancel</i>
+                </button>
+            </div>
+        {% endif %}
+
+        <h1>{% now "l, F d, Y" %}</h1>
+
+        <form method="post" autocomplete="on">
+            {% csrf_token %}
+
+            <!-- Message Type Switch -->
+            <div class="switch">
+                <label>
+                    Full Board
+                    <input type="checkbox" id="message_type" name="message_type"
+                           {% if data.board.message_only %}checked{% endif %}
+                    >
+                    <span class="lever"></span>
+                    Message Only
+                </label>
+            </div>
+            <br><br>
+
+
+            <!-- Message -->
+            <div class="" id="message_only" hidden>
+                <h5>Message</h5> <br>
+
+                <div class="input-field col s12">
+                    {% if data.board %}
+                        <textarea name="message" id="msg"
+                                  class="materialize-textarea">{% if data.board %}{{ data.board.message }}{% endif %}
+                    </textarea>
+                    {% else %}
+                        <textarea name="message" id="msg" class="materialize-textarea"></textarea>
+                    {% endif %}
+
+                    <label for="msg">Message</label>
+                </div>
+
+            </div>
+
+
+            <!-- Full -->
+            <div class="" id="full_board">
+
+                <!-- Auto Fill Buttons -->
+                <h5>Presets:</h5> <br>
+                <button type="button" class="waves-effect waves-light btn btn-large b" onclick="presetDay('A')">A
+                </button>
+                <button type="button" class="waves-effect waves-light btn btn-large b" onclick="presetDay('B')">B
+                </button>
+                <button type="button" class="waves-effect waves-light btn btn-large b" onclick="presetDay('C')">C
+                </button>
+                <button type="button" class="waves-effect waves-light btn btn-large b" onclick="presetDay('D')">D
+                </button>
+                <button type="button" class="waves-effect waves-light btn btn-large b" onclick="presetDay('Z')">Z
+                </button>
+                <br><br><br>
+
+
+                <!-- Day Input -->
+                <div class="row">
+                    <div class="input-field col s2">
+                        <select id="day" name="day">
+                            <option value="" disabled {% if not data.board %}selected{% endif %}>Day</option>
+
+                            {% if data.board %}
+                                <option value="{{ data.board.day }}" selected>{{ data.board.day }}</option>
+                            {% endif %}
+
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="Z">Z</option>
+                        </select>
+                        <label>Day</label>
+                    </div>
+                </div>
+
+
+                <!-- Schedule Input -->
+                <div class="card-panel">
+
+                    <h5>Periods:</h5><br>
+
+                    <table>
+                        <thead>
+                        <tr class="row">
+                            <th class="col s4">Name/Number</th>
+                            <th class="col s4">Start Time</th>
+                            <th class="col s4">End Time</th>
+                        </tr>
+                        </thead>
+
+                        <!-- filled through js -->
+                        <tbody id="periods">
+
+                        {% if data.board %}
+                            {% for period in data.schedule %}
+                                <tr class="row">
+                                    <th class="col s4">
+                                        <input type="text" name="periodNames[]"
+                                               class="input-field inline col s4 validate" value="{{ period.number }}">
+                                    </th>
+                                    <th class="col s4 input-field ">
+                                        <input type="text" name="periodStarts[]" class="inline col s4 validate"
+                                               value="{{ period.start_time }}">
+                                    </th>
+                                    <th class="col s4 input-field ">
+                                        <input type="text" name="periodEnds[]" class="inline col s4 validate"
+                                               value="{{ period.end_time }}">
+                                    </th>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+
+                        </tbody>
+
+                    </table>
+
+
+                    <br><br><br>
+                    <button type="button" class="waves-effect waves-light btn b" onclick="addPeriod()">
+                        <i class="material-icons">add</i>
+                    </button>
+                    &nbsp;&nbsp;&nbsp;(Do not leave the last row blank; this will clear the input)
+
+
+                </div>
+                <br><br>
+
+                <!-- Announcements Input -->
+                <div class="card-panel">
+                    <h5>Announcements:</h5><br>
+                    <div class="input-field col s12">
+                        {% if data.board %}
+                            <textarea name="announcements" id="notes"
+                                      class="materialize-textarea">{{ data.board.announcements }}</textarea>
+                        {% else %}
+                            <textarea name="announcements" id="notes" class="materialize-textarea"></textarea>
+                        {% endif %}
+                        <label for="notes">Announcements/ Notes / Special Instructions/ etc..</label>
+                    </div>
+                </div>
+
+
+                <!-- Quote Input -->
+                <div class="card-panel">
+                    <h5>Quote:</h5><br>
+                    <div class="input-field col s12">
+                        {% if data.board %}
+                            <textarea name="quote" id="quote"
+                                      class="materialize-textarea">{{ data.board.quote }}</textarea>
+                        {% else %}
+                            <textarea name="quote" id="quote" class="materialize-textarea">Have a great day!</textarea>
+                        {% endif %}
+                        <label for="quote">Motivational positive quote</label>
+                    </div>
+                </div>
+                <br><br>
+
+
+                <!-- Absent Teachers Input -->
+                <div class="card-panel">
+
+                    <h5>Absent Teachers:</h5><br>
+
+                    <table>
+                        <thead>
+                        <tr class="row">
+                            <th class="col s6">Name</th>
+                            <th class="col s6">Hours</th>
+                        </tr>
+                        </thead>
+
+                        <!-- filled through js -->
+                        <tbody id="absents">
+
+                        {% if data.board %}
+                            {% for absent in data.absents %}
+                                <tr class="row">
+                                    <th class="col s6 input-field">
+                                        <input type="text" name="teacherNames[]"
+                                               class="inline validate teacher-autocomplete"
+                                               value="{{ absent.teacher }}">
+                                        <ul class="autocomplete-content dropdown-content"></ul>
+                                    </th>
+                                    <th class="col s6 input-field">
+                                        <input type="text" name="teacherHours[]"
+                                               class="inline validate hour-autocomplete" value="{{ absent.hours }}">
+                                        <ul class="autocomplete-content dropdown-content"></ul>
+                                    </th>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+
+                        </tbody>
+
+                    </table>
+
+
+                    <br><br><br>
+                    <button type="button" class="waves-effect waves-light btn b" onclick="addTeacher()">
+                        <i class="material-icons">add</i>
+                    </button>
+                    &nbsp;&nbsp;&nbsp;(Do not leave the last row blank; this will clear the input)
+
+                </div>
+
+            </div>
+
+            <!-- Submit Button -->
+            <br>
+            <div class="input-field center-align">
+
+                <button id="submit" type="submit" class="waves-effect waves-light btn btn-large b">
+                    Post Board
+                </button>
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <br><br>
+{% endblock %}
+
+
+{% block customscripts %}
+
+    <script>
+
+        schedule = {
+            A: [
+                ['4', '7:40am', '8:40am'],
+                ['1', '8:45am', '9:45am'],
+                ['2', '9:50am', '10:50am'],
+                ['Lunch', '10:55am', '11:35am'],
+                ['8', '11:40am', '12:40pm'],
+                ['5', '12:45pm', '1:45pm'],
+                ['6', '1:50pm', '2:50pm'],
+            ],
+            B: [
+                ['3', '7:40am', '8:40am'],
+                ['4', '8:45am', '9:45am'],
+                ['1', '9:50am', '10:50am'],
+                ['Lunch', '10:55am', '11:35am'],
+                ['7', '11:40am', '12:40pm'],
+                ['8', '12:45pm', '1:45pm'],
+                ['5', '1:50pm', '2:50pm'],
+            ],
+            C: [
+                ['2', '7:40am', '8:40am'],
+                ['3', '8:45am', '9:45am'],
+                ['4', '9:50am', '10:50am'],
+                ['Lunch', '10:55am', '11:35am'],
+                ['6', '11:40am', '12:40pm'],
+                ['7', '12:45pm', '1:45pm'],
+                ['8', '1:50pm', '2:50pm'],
+            ],
+            D: [
+                ['1', '7:40am', '8:40am'],
+                ['2', '8:45am', '9:45am'],
+                ['3', '9:50am', '10:50am'],
+                ['Lunch', '10:55am', '11:35am'],
+                ['5', '11:40am', '12:40pm'],
+                ['6', '12:45pm', '1:45pm'],
+                ['7', '1:50pm', '2:50pm'],
+            ]
+        };
+
+        // Page On Ready
+        $(document).ready(function () {
+            $('#message_only').hide("fast");
+
+            // hides form if board exists
+            {% if data.board %}
+                $('#input-form').hide();
+
+                {% if data.board.message_only %}
+                    $('#full_board').hide();
+                    $('#message_only').show();
+                {% endif %}
+            {% endif %}
+
+            $('.tooltipped').tooltip();
+            new M.Select(document.querySelector('select'));
+        });
+
+        // adds hide/show for form if board exists
+        {% if data.board %}
+            function showForm() {
+                $('#posted-board').hide("slow");
+                $('#input-form').show("slow");
+            }
+
+            function hideForm() {
+                $('#input-form').hide("slow");
+                $('#posted-board').show("slow");
+            }
+        {% endif %}
+
+
+        // changes message type on switch change
+        $(".switch").find("input[type=checkbox]").on("change", function () {
+            var status = $(this).prop('checked');
+
+            if (status) {
+                $('#full_board').hide("slow");
+                $('#message_only').show("slow");
+            }
+            else {
+                $('#message_only').hide("slow");
+                $('#full_board').show("slow");
+            }
+        });
+
+        function teacherAutocompleteInit() {
+            $('.teacher-autocomplete').autocomplete({
+                data: {
+
+                    {% for teacher in teachers %}'{{ teacher }}': null, {% endfor %}
+
+                },
+                minLength: 3,
+                limit: 5
+            });
+        }
+
+        function hoursAutocompleteInit() {
+            $('.hour-autocomplete').autocomplete({
+                data: {
+                    'Full Day': null,
+                    'AM Only': null,
+                    'PM Only': null
+                },
+            });
+        }
+
+        function presetDay(day) {
+
+            // Update day selection dropdown menu
+            $('#day').val(day);
+            new M.Select(document.querySelector('select'));
+
+            // add default periods
+            addAllPeriodsInDay(day);
+
+        }
+
+        function addAllPeriodsInDay(day) {
+            $('#periods').empty();
+            var s = schedule[day];
+            for (var i = 0; i < s.length; i++) {
+                addPeriod(s[i][0], s[i][1], s[i][2]);
+            }
+        }
+
+        function addPeriod(name, start, end) {
+            var tr = $('<tr>').attr({
+                class: 'row'
+            });
+
+
+            // names
+            var nameTH = $('<th>').attr({
+                class: 'col s4'
+            });
+
+            var nameInput = $('<input>').attr({
+                type: 'text',
+                name: 'periodNames[]',
+                class: 'input-field inline col s4 validate',
+                autocomplete: 'off',
+                value: name
+            });
+            nameInput.appendTo(nameTH);
+
+
+            // start time
+            var startTH = $('<th>').attr({
+                class: 'col s4 input-field '
+            });
+
+            var startInput = $('<input>').attr({
+                type: 'text',
+                name: 'periodStarts[]',
+                class: 'inline col s4 validate',
+                autocomplete: 'off',
+                value: start
+            });
+            startInput.appendTo(startTH);
+
+
+            // end time
+            var endTH = $('<th>').attr({
+                class: 'col s4 input-field '
+            });
+
+            var endInput = $('<input>').attr({
+                type: 'text',
+                name: 'periodEnds[]',
+                class: 'inline col s4 validate',
+                autocomplete: 'off',
+                value: end
+            });
+            endInput.appendTo(endTH);
+
+            // append
+            nameTH.appendTo(tr);
+            startTH.appendTo(tr);
+            endTH.appendTo(tr);
+
+            tr.appendTo('#periods');
+
+            M.updateTextFields();
+        }
+
+
+        function addTeacher() {
+            var tr = $('<tr>').attr({
+                class: 'row'
+            });
+
+
+            // Name
+            var nameTH = $('<th>').attr({
+                class: 'col s6 input-field'
+            });
+
+            var nameInput = $('<input>').attr({
+                type: 'text',
+                name: 'teacherNames[]',
+                class: 'inline validate teacher-autocomplete',
+                autocomplete: 'off',
+            });
+            nameInput.appendTo(nameTH);
+
+
+            // Hours
+            var hoursTH = $('<th>').attr({
+                class: 'col s6 input-field'
+            });
+
+            var hoursInput = $('<input>').attr({
+                type: 'text',
+                name: 'teacherHours[]',
+                class: 'inline validate hour-autocomplete',
+                autocomplete: 'off',
+            });
+            hoursInput.appendTo(hoursTH);
+
+
+            // append
+            nameTH.appendTo(tr);
+            hoursTH.appendTo(tr);
+
+            tr.appendTo('#absents');
+
+            // re-init text fields
+            M.updateTextFields();
+
+            // re init autocomplete
+            teacherAutocompleteInit();
+            hoursAutocompleteInit();
+
+        }
+
+    </script>
+
+{% endblock %}
+
+

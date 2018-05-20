@@ -1,0 +1,120 @@
+
+{% if graph_data.graph %}
+
+    {% include 'info/graph/graph.html' %}
+
+    <form action="{% url 'info:graph_delete' %}" method="post">
+        {% csrf_token %}
+
+        Graphs are immutable; To make changes, delete the current graph and
+        create a new one. <br> Graphs are not visible without a Google Sign-In. <br>
+        This graph will remain posted until it is deleted.
+
+        <button id="submit" type="submit" class="btn red white-text right">
+            <i class="material-icons">delete</i>
+        </button>
+    </form>
+    <br><br>
+
+{% else %}
+
+    <form action="{% url 'info:graph_post' %}" method="post">
+        {% csrf_token %}
+
+        <div class="input-field">
+            <input id="title" type="text" class="validate" name="title" required>
+            <label for="title">Title</label>
+        </div>
+        <br>
+
+        <table>
+            <thead>
+            <tr class="row">
+                <th class="col s4">Name</th>
+                <th class="col s4">Value (Numbers Only)</th>
+                <th class="col s4">Color</th>
+            </tr>
+            </thead>
+
+            <!-- filled through js -->
+            <tbody id="fields">
+
+            </tbody>
+
+        </table>
+
+        <br><br><br>
+
+        <button type="button" class="waves-effect waves-light btn b" onclick="addEntry()">
+            <i class="material-icons">add</i>
+        </button>
+        <br><br>
+
+
+        <button id="submit" type="submit" class="btn-large waves-effect waves-light white-text b">
+            Post
+        </button> (Do not leave the last row blank; this will clear the selection)
+        <br><br>
+
+    </form>
+
+
+    <script>
+        function addEntry() {
+            var tr = $('<tr>').attr({
+                class: 'row'
+            });
+
+
+            // Name
+            var nameTH = $('<th>').attr({
+                class: 'col s4'
+            });
+
+            var nameInput = $('<input>').attr({
+                type: 'text',
+                name: 'names[]',
+                class: 'inline validate input-field',
+            });
+            nameInput.appendTo(nameTH);
+
+
+            // Value
+            var valueTH = $('<th>').attr({
+                class: 'col s4'
+            });
+
+            var valueInput = $('<input>').attr({
+                type: 'number',
+                name: 'values[]',
+                class: 'inline validate input-field col s4',
+            });
+            valueInput.appendTo(valueTH);
+
+
+            // Color
+            var colorTH = $('<th>').attr({
+                class: 'col s4'
+            });
+
+            var colorInput = $('<input>').attr({
+                type: 'color',
+                name: 'colors[]',
+                class: 'inline validate input-field col s6',
+            });
+            colorInput.appendTo(colorTH);
+
+
+            // append
+            nameTH.appendTo(tr);
+            valueTH.appendTo(tr);
+            colorTH.appendTo(tr);
+
+            tr.appendTo('#fields');
+
+            // re-init text fields
+            M.updateTextFields();
+        }
+    </script>
+
+{% endif %}

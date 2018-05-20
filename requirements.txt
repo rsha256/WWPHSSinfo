@@ -1,0 +1,8 @@
+Django==1.11
+django-htmlmin
+python-pptx
+python-dateutil
+google
+google-auth
+requests
+

@@ -1,0 +1,112 @@
+{% now "Y-m-d" as current_date %}
+
+
+<!-- Out of date warning -->
+{% if data.board.timestamp|date:"Y-m-d" != current_date and not suppress_outdated_warning %}
+     <div class="card-panel yellow lighten-3">
+            <p class="flow-text center">
+                <i class="material-icons">warning</i>
+                Today's board hasn't been posted yet.
+                Try checking the TV screen in the commons.
+            </p>
+        </div>
+{% endif %}
+
+
+{% if not data.board.message_only %}
+
+    <!-- schedule -->
+    <section>
+
+        <div class="card-panel flow-text">
+
+            <!-- Date and Day -->
+            <h3 class="center">{{ data.board.timestamp|date:"l, F d, Y" }}</h3>
+            <h3 class="center">Day: {{ data.board.day }}</h3>
+            <br>
+
+            <!-- schedule -->
+            <table>
+                <thead>
+                <tr class="purple-text">
+                    <th>Period</th>
+                    <th>Start</th>
+                    <th>End</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for period in data.schedule %}
+                    <tr>
+                        <th>{{ period.number }}</th>
+                        <th>{{ period.start_time }}</th>
+                        <th>{{ period.end_time }}</th>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <br>
+
+            <!-- announcements -->
+            {% if data.board.announcements %}
+                <h4>Announcements:</h4>
+                {{ data.board.announcements }}
+            {% endif %}
+            <br><br>
+
+            <!-- Quote -->
+            {% if data.board.quote is not '' %}
+                <blockquote>
+                    {{ data.board.quote }}
+                </blockquote>
+            {% endif %}
+
+        </div>
+
+    </section>
+    <br><br>
+
+    <!-- Absents -->
+    <section>
+
+        <div class="card-panel flow-text">
+
+            <h4>Absent Teachers</h4>
+            <br>
+
+            <table class="striped">
+                <thead>
+                <tr class="purple-text">
+                    <th>Name</th>
+                    <th>Hours</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for absent in data.absents %}
+                    <tr>
+                        <th>{{ absent.teacher }}</th>
+                        <th>{{ absent.hours }}</th>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <br>
+
+            All classes report to commons 3
+        </div>
+        <br><br>
+    </section>
+
+{% else %}
+    <!-- message only -->
+    <section>
+        <div class="card-panel flow-text">
+            <h3 class="center">{{ data.board.timestamp|date:"F d, Y" }}</h3><br>
+
+            <p>{{ data.board.message }}</p>
+
+        </div>
+    </section>
+
+{% endif %}

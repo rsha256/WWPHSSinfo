@@ -1,0 +1,12 @@
+
+{% if super_message.heading != None %}
+
+    <div class="card-panel blue lighten-1 white-text">
+        <h3 class="center">{{ super_message.heading }}</h3>
+        <p class="flow-text">{{ super_message.message }}</p>
+        <div class="right">Posted: {{ super_message.updated }}</div>
+        <br>
+    </div>
+
+{% endif %}
+

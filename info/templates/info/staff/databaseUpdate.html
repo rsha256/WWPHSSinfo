@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Database{% endblock %}
+
+{% block content %}
+    <h1>Update Database</h1>
+
+    {% if success is True %}
+        <div class="card-panel flow-text green lighten-1 white-text">
+            <h4>Database Success</h4>
+            <p class="flow-text">
+                All data was cleared and new teachers were added!
+            </p>
+        </div>
+    {% elif success is False %}
+        <div class="card-panel flow-text red lighten-1 white-text">
+            <h4>Error</h4>
+            <p class="flow-text">
+                Something went wrong. Try checking the .json file for format errors
+            </p>
+        </div>
+    {% endif %}
+
+    <p class="flow-text">
+        This will delete <span class="red-text">EVERYTHING</span> and then add all teachers in the .json file
+        This action is irreversible. <br>(The update may take a while)
+    </p>
+
+    <br>
+    <div class="progress" id="loader" >
+        <div class="indeterminate"></div>
+    </div>
+    <br>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="file-field input-field">
+            <div class="btn">
+                <span>File</span>
+                <input type="file" name="teachers" required>
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+            </div>
+        </div>
+
+        <button class="btn form-control red" type="submit" id="submit">Update</button>
+
+    </form>
+
+    <br><br>
+
+    <a href="{% url 'info:staff_index' %}" class="btn teal darken-3" id="back">Back</a>
+
+    <br><br><br><br>
+
+{% endblock %}
+
+
+{% block customscripts %}
+    <script>
+        $(document).ready(function () {
+            $('#loader').hide();
+        });
+        $('form').on('submit', function(e){
+            //e.preventDefault();
+            $('#loader').show();
+            //$('form').unbind('submit').submit();
+        });
+    </script>
+{% endblock %}

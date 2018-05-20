@@ -1,0 +1,40 @@
+{% if super_message %}
+
+    {% include 'info/superMessage/superMessage.html' %}
+
+    <form action="{% url 'info:super_message_delete' %}" method="post">
+        {% csrf_token %}
+        This message is visible without requiring a Google Sign-In. <br>
+        This message will remain posted until it is deleted.
+        <button id="submit" type="submit" class="btn red white-text right">
+            <i class="material-icons">delete</i>
+        </button>
+    </form>
+    <br><br>
+
+{% else %}
+
+    <form action="{% url 'info:super_message_post' %}" method="post">
+        {% csrf_token %}
+
+        <div class="input-field">
+            <input id="heading" type="text" class="validate" name="heading" required>
+            <label for="heading">Title / Heading</label>
+        </div>
+        <br>
+
+        <div class="input-field">
+            <textarea id="message" class="materialize-textarea validate" name="message"></textarea>
+            <label for="message">Message</label>
+        </div>
+        <br><br>
+
+        <button id="submit" type="submit" class="btn-large waves-effect waves-light white-text b">
+            Post
+        </button>
+        <br><br>* This message will be visible without requiring a Google Sign-In
+        <br><br>
+
+    </form>
+
+{% endif %}

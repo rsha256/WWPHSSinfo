@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}{% endblock %}
+
+
+{% block customstyles %}
+
+    {% if not auth %}
+        <style>
+            .g-signin2 {
+                width: 100%;
+            }
+
+            .g-signin2 > div {
+                margin: 0 auto;
+            }
+        </style>
+    {% endif %}
+
+{% endblock %}
+
+
+{% block content %}
+    <main>
+        <meta name="google-signin-client_id" content="{{ gauth_key }}">
+
+        {% include 'info/superMessage/superMessage.html' %}
+        <br>
+
+        {% if auth %}
+
+            {% include 'info/graph/graph.html' %}
+            <br>
+
+            {% if data != "NoneToShow" %}
+                {% include 'info/board/board.html' %}
+            {% else %}
+                <h4>HSSinfo: There are no boards posted yet</h4>
+            {% endif %}
+
+        {% else %}
+            <div class="center-align ">
+                <h5>Sign In with <span class="red-text">@wwprsd</span></h5> <br>
+
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                <br>
+
+                <p id="err" class="red-text"></p>
+            </div> <br>
+            <br><br><br><br>
+        {% endif %}
+
+    </main>
+{% endblock %}
+
+
+{% block customscripts %}
+
+    {% if not auth %}
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+        <script>
+            function onSignIn(googleUser) {
+                var id_token = googleUser.getAuthResponse().id_token;
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/');
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.setRequestHeader('X-CSRFToken', Cookies.get('csrftoken'));
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        try {
+                            var response = JSON.parse(xhr.responseText);
+                            if (xhr.status === 200 && response.auth === 'OK') {
+                                window.location.reload(true);
+                            } else {
+
+                            }
+                        }
+                        catch (exception) {
+                            document.getElementById("err").innerHTML =
+                                "The page will not load unless an <b>@wwprsd</B> account is logged in. " +
+                                "If you cannot see the board despite clicking the button, try logging out of all other accounts." +
+                                " (open a new tab and sign-out of other google accounts) ";
+                        }
+                    }
+                };
+
+                xhr.send('idtoken=' + id_token);
+            }
+
+            function signOut() {
+                var auth2 = gapi.auth2.getAuthInstance();
+                auth2.signOut().then(function () {
+                    console.log('User signed out.');
+                });
+            }
+        </script>
+    {% endif %}
+
+{% endblock %}
+

@@ -1,0 +1,49 @@
+{% if graph_data.graph %}
+
+    <div class="card-panel">
+        <canvas id="myChart" width="30" height="10"></canvas>
+
+        Updated: {{ graph_data.graph.updated }}
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script>
+        var ctx = document.getElementById("myChart");
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    {% for l in graph_data.entries %}
+                        "{{ l.name }}",
+                    {% endfor %}
+                ],
+                datasets: [{
+                    label: '{{ graph_data.graph.title }}',
+                    data: [
+                        {% for l in graph_data.entries %}
+                            "{{ l.value }}",
+                        {% endfor %}
+                    ],
+                    backgroundColor: [
+                        {% for l in graph_data.entries %}
+                            "{{ l.color }}",
+                        {% endfor %}
+                    ],
+                    borderColor: [],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+{% endif %}
