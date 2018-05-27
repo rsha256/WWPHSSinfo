@@ -23,14 +23,35 @@ def database_update(request):
         models.Teacher.objects.all().delete()
         models.Board.objects.all().delete()
         models.SuperMessage.objects.all().delete()
+        models.Sport.objects.all().delete()
+        models.Club.objects.all().delete()
 
         try:
-            file = json.loads((request.FILES['teachers'].read()).decode("utf-8", "strict"))
-            for t in file:
+            file = json.loads((request.FILES['data'].read()).decode("utf-8", "strict"))
+
+            for t in file['teachers']:
                 teacher = models.Teacher()
                 teacher.first_name = t['first']
                 teacher.last_name = t['last']
                 teacher.save()
+
+            for s in file['sports']:
+                sport = models.Sport()
+                sport.name = s['name']
+                sport.gender = s['gender']
+                sport.season = s['season']
+                sport.coach = s['coach']
+                sport.save()
+
+            for c in file['clubs']:
+                club = models.Club()
+                club.name = c['name']
+                club.description = c['description']
+                club.meeting_day = c['meeting_day']
+                club.location = c['location']
+                club.adviser = c['adviser']
+                club.email = c['email']
+                club.save()
 
             success = True
 

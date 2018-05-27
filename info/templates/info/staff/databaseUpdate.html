@@ -22,8 +22,9 @@
     {% endif %}
 
     <p class="flow-text">
-        This will delete <span class="red-text">EVERYTHING</span> and then add all teachers in the .json file
-        This action is irreversible. <br>(The update may take a while)
+        This will delete <i><span class="red-text">EVERYTHING</span></i> and then add all
+        <span class="green-text">teachers, clubs and sports</span> in the <span class="orange-text">data.json file</span>.
+        <span class="red-text">This action is <i>irreversible</i>.</span> <br>(The update may take a while)
     </p>
 
     <br>
@@ -38,7 +39,7 @@
         <div class="file-field input-field">
             <div class="btn">
                 <span>File</span>
-                <input type="file" name="teachers" required>
+                <input type="file" name="data" required>
             </div>
             <div class="file-path-wrapper">
                 <input class="file-path validate" type="text">
@@ -64,9 +65,7 @@
             $('#loader').hide();
         });
         $('form').on('submit', function(e){
-            //e.preventDefault();
             $('#loader').show();
-            //$('form').unbind('submit').submit();
         });
     </script>
 {% endblock %}

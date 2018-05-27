@@ -4,34 +4,27 @@
 
 {% block content %}
 
-    {% if error %}
-        <div class="row">
-            <div class="col s2"></div>
-
-            <div class="card-panel col s8 red white-text">
-                <h4>Invalid Login</h4>
-                <p class="flow-text">
-                    Your username / password is incorrect or the account does not exist or is disabled. Contact an admin
-                    for assistance in account recovery.
-                </p>
-            </div>
-        </div>
-    {% endif %}
-
-
     <div class="row">
 
         <div class="col s2"></div>
 
-        <div class="card-panel col s8 center">
+        <div class="card-panel col s8 z-depth-5 ">
 
             <form action="" method="post">
                 {% csrf_token %}
 
-                <h4>Staff Login</h4><br>
+                <h2>Staff Portal</h2>
+
+                {% if error %}
+                    <div class="left card-panel red white-text z-depth-3">
+                        Your username / password is incorrect or the account does not exist or is disabled. Contact an
+                        admin
+                        for assistance in account recovery.
+                    </div>
+                {% endif %}
 
                 {% if continue is not None %}
-                    <span class="center red-text">
+                    <span class="red-text">
                         <h6>Sign in to continue to {{ continue }}</h6>
                     </span><br>
                 {% endif %}
@@ -41,17 +34,15 @@
                     <input id="username" type="text" class="validate" name="username" required>
                     <label for="username">Username</label>
                 </div>
-                <br>
 
                 <div class="input-field ">
                     <i class="material-icons prefix">vpn_key</i>
                     <input id="password" type="password" class="validate" name="password" required>
                     <label for="password">Password</label>
                 </div>
-                <br>
 
-                <div class="input-field ">
-                    <button id="submit" type="submit" class="waves-effect waves-light btn btn-large green">
+                <div class="input-field right">
+                    <button id="submit" type="submit" class="waves-effect waves-light btn green darken-1 hoverable">
                         Login
                     </button>
                 </div>

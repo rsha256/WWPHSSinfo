@@ -57,6 +57,17 @@ def index(request):
     })
 
 
+def activities(request):
+    if request.user.is_authenticated() or request.session.get('gauth'):
+
+        return render(request, 'info/activities.html', {
+            'clubs': models.Club.objects.all().order_by('meeting_day'),
+            'sports': models.Sport.objects.all().order_by('season'),
+        })
+
+    return redirect('/')
+
+
 def createsuperuser(request):
     '''
     Creates a superuser only if it does not exist already.

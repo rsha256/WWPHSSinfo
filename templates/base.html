@@ -6,7 +6,8 @@
 
     {% load staticfiles %}
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.1/css/materialize.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.1/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}"/>
 
@@ -72,33 +73,43 @@
 <footer class="page-footer green lighten-1">
     <div class="container">
         <div class="row">
-            <div class="col l6 s12">
+            <div class="col s4">
                 <h5 class="white-text">WWP HSS</h5>
-                <p class="grey-text text-lighten-4">
-                    HSS Information Page<br>
-                    This website is for convenience only.
-                    The TV screen is the official and accurate information display.
-                    The TV screen is always right, regardless of the content of this site.
-                    <br>Use your <u>WWP email</u> wherever login is required.
-                    <br>For site issues contact the directors or school admins.
+                <p class="white-text text-lighten-4">
+                    HSS Information Page. This website is for convenience only.
+                    The TV screen is always thr correct version, regardless of the content of this site.
                 </p>
             </div>
-            <div class="col l4 offset-l2 s12">
+            <div class="col s4">
                 <h5 class="white-text">Links</h5>
                 <ul>
-                    <li><a class="grey-text text-lighten-3" href="{% url 'info:staff_index' %}">Staff Access</a></li>
-                    <li><a class="grey-text text-lighten-3" href="{% url 'credits' %}">Credit</a></li>
+                    <li><a class="white-text text-lighten-3" href="{% url 'info:staff_index' %}">Staff Access</a></li>
+                    <li><a class="white-text text-lighten-3" href="{% url 'info:activities' %}">Extracurriculars</a></li>
+                    <li><a class="white-text text-lighten-3" href="{% url 'credits' %}">Credit</a></li>
                     {% if request.user.is_authenticated %}
                         <li><a class="grey-text text-lighten-3" href="{% url 'info:logout' %}">Logout</a></li>
                     {% endif %}
                 </ul>
             </div>
+
+        <div class="col s4">
+                <h5 class="white-text">Resources</h5>
+                <ul>
+                    <li><a class="white-text" href="http://wwphs.sharpschool.com/">Teacher Web Pages</a></li>
+                    <li><a class="white-text" href="https://gateway.ww-p.org ">Portal</a></li>
+                    <li><a class="white-text" href="https://www.west-windsor-plainsboro.k12.nj.us">District Home</a></li>
+                </ul>
+            </div>
+
+
         </div>
     </div>
     <div class="footer-copyright">
-        <div class="container">
+        <div class="container white-text">
             © 2017 WWPHSS
-            <a class="grey-text text-lighten-4 right" href="//www.west-windsor-plainsboro.k12.nj.us">District Home</a>
+            <div class="right">
+
+            </div>
         </div>
     </div>
 </footer>

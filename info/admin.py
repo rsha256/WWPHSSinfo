@@ -8,7 +8,7 @@ from . import models
 class SessionAdmin(admin.ModelAdmin):
     def _session_data(self, obj):
         return obj.get_decoded()
-    list_display = ['session_key', '_session_data', 'expire_date']
+    list_display = ('session_key', '_session_data', 'expire_date')
 
 
 class TeacherAdmin(admin.ModelAdmin):
@@ -43,6 +43,12 @@ class SuperMessageAdmin(admin.ModelAdmin):
     pass
 
 
+class SportAdmin(admin.ModelAdmin):
+    list_display = ('name', 'gender', 'season', 'coach')
+
+
+class ClubAdmin(admin.ModelAdmin):
+    list_display = ('name', 'meeting_day', 'location', 'adviser', 'email')
 
 
 admin.site.register(Session, SessionAdmin)
@@ -57,4 +63,5 @@ admin.site.register(models.SuperMessage, SuperMessageAdmin)
 admin.site.register(models.Graph, GraphAdmin)
 admin.site.register(models.GraphEntry, GraphEntryAdmin)
 
-
+admin.site.register(models.Sport, SportAdmin)
+admin.site.register(models.Club, ClubAdmin)

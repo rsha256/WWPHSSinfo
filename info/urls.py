@@ -5,6 +5,8 @@ app_name = 'info'
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^activities$', views.activities, name='activities'),
+
 
     url(r'^login/$', views.login, name='login'),
     url(r'^logout/', views.logout, name='logout'),

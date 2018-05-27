@@ -1,10 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Activities{% endblock %}
+
+
+{% block customstyles %}
+
+{% endblock %}
+
+
+{% block content %}
+
+
+    <h3>Clubs:</h3>
+    <table class="responsive-table striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Day</th>
+            <th>Location</th>
+            <th>Adviser</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+            {% for club in clubs %}
+                <tr>
+                    <th>{{ club.name }}</th>
+                    <th>{{ club.description }}</th>
+                    <th>{{ club.get_meeting_day_display }}</th>
+                    <th>{{ club.location }}</th>
+                    <th>{{ club.adviser }}</th>
+                    <th>{{ club.email }}</th>
+                </tr>
+            {% endfor %}
+
+
+        </tbody>
+    </table>
+
+    <br>
+
+    <h3>Sports:</h3>
+    <table class="responsive-table striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Season</th>
+            <th>Coach</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+            {% for sport in sports %}
+                <tr>
+                <th>{{ sport.name }}</th>
+                <th>{{ sport.get_gender_display }}</th>
+                <th>{{ sport.get_season_display }}</th>
+                <th>{{ sport.coach }}</th>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+    <br><br>
+
+    Something wrong or missing? Contact admins. <br><br>
+
+{% endblock %}
+
+
+{% block customscripts %}
+
+{% endblock %}
+

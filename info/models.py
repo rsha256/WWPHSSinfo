@@ -3,10 +3,10 @@ from django.contrib.auth.models import User
 from django.utils.timezone import now
 from WWPHSSinfo.settings import PRODUCTION
 
-
 # Load User model based on environment
 if PRODUCTION:
     from djangae.contrib.gauth_datastore.models import GaeDatastoreUser
+
     User = GaeDatastoreUser
 else:
     from django.contrib.auth.models import User
@@ -14,12 +14,74 @@ else:
 
 # Create your models here.
 
+####################
+#    ACTIVITIES    #
+####################
 
-# ## SUPER MESSAGE ## #
+class Sport(models.Model):
+    """
+    A Single Sport for display on activities page
+    """
 
-# A message that appears at the very top and bypasses any implemented Gauth and is
-# not archived. Only one should exist at a time
+    GENDERS = (
+        ('B', 'Boys'),
+        ('G', 'Girls'),
+    )
+
+    SEASONS = (
+        ('F', 'Fall'),
+        ('W', 'Winter'),
+        ('S', 'Spring'),
+    )
+
+    name = models.CharField(max_length=200)
+    gender = models.CharField(max_length=8, choices=GENDERS, default=None, null=True)
+    season = models.CharField(max_length=10, choices=SEASONS, default=None, null=True)
+    coach = models.TextField(null=True)
+
+    def __str__(self):
+        return self.gender + ' ' + self.name
+
+
+class Club(models.Model):
+    """
+    A Single club for display on activities page
+    """
+
+    MEETING_DAYS = (
+        ('M', 'Monday'),
+        ('Tu', 'Tuesday'),
+        ('W', 'Wednesday'),
+        ('Th', 'Thursday'),
+        ('F', 'Friday'),
+        ('A', 'A'),
+        ('B', 'B'),
+        ('C', 'C'),
+        ('D', 'D'),
+    )
+
+    name = models.CharField(max_length=200)
+    description = models.TextField(null=True, default=None)
+    meeting_day = models.CharField(max_length=10, choices=MEETING_DAYS, default=None, null=True)
+    location = models.CharField(max_length=25, null=True)
+    adviser = models.TextField(null=True, default=None)
+    email = models.EmailField(null=True, default=None)
+
+    def __str__(self):
+        return self.name
+
+
+#######################
+#    SUPER MESSAGE    #
+#######################
+
+
 class SuperMessage(models.Model):
+    """
+     A message that appears at the very top and bypasses any implemented Gauth and is
+     not archived. Only one should exist at a time
+    """
+
     heading = models.TextField(null=True)
     message = models.TextField(null=True)
     updated = models.DateTimeField(default=now)
@@ -28,11 +90,17 @@ class SuperMessage(models.Model):
         return str(self.updated)
 
 
-# ## GRAPH ## #
+###############
+#    GRAPH    #
+###############
 
-# A graph to show progress between groups; ex: spirit week
-# This is not archived and only one should exist at a time
+
 class Graph(models.Model):
+    """
+    A graph to show progress between groups; ex: spirit week
+    This is not archived and only one should exist at a time
+    """
+
     title = models.TextField(null=True)
     updated = models.DateTimeField(default=now)
 
@@ -41,6 +109,11 @@ class Graph(models.Model):
 
 
 class GraphEntry(models.Model):
+    """
+    A Single entry
+    key, value data
+    """
+
     graph = models.ForeignKey(Graph, on_delete=models.CASCADE)
     name = models.TextField(null=True)
     value = models.FloatField(default=0)
@@ -50,11 +123,16 @@ class GraphEntry(models.Model):
         return str(self.name) + " " + str(self.graph)
 
 
-# ## BOARD ## #
+###############
+#    BOARD    #
+###############
 
 
-# Data about a teacher, only for autocomplete and lookup
 class Teacher(models.Model):
+    """
+    Data about a teacher, only for autocomplete and lookup
+    """
+
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
 
@@ -65,8 +143,11 @@ class Teacher(models.Model):
         return self.last_name + ', ' + self.first_name
 
 
-# Data for a board entry
 class Board(models.Model):
+    """
+    Data for a board entry
+    """
+
     timestamp = models.DateTimeField(default=now)
     announcements = models.TextField(null=True)
     quote = models.TextField(null=True)
@@ -88,9 +169,12 @@ class Board(models.Model):
         return str(self.timestamp.date())
 
 
-# Data for period times on the board
-# NOT the periods teachers are out.
 class Period(models.Model):
+    """
+    Data for period times on the board
+    NOT the periods teachers are out.
+    """
+
     board = models.ForeignKey(Board, on_delete=models.CASCADE)
     order = models.IntegerField(default=0)
     number = models.CharField(max_length=50)
@@ -101,12 +185,14 @@ class Period(models.Model):
         return str(self.board.timestamp.date())
 
 
-# Data for a teacher absent on the board.
 class Absent(models.Model):
+    """
+    Data for a teacher absent on the board.
+    """
+
     board = models.ForeignKey(Board, on_delete=models.CASCADE)
     teacher = models.CharField(max_length=200)
     hours = models.CharField(max_length=150)
 
     def __str__(self):
         return self.teacher + ' ' + self.hours
-

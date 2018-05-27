@@ -1,15 +1,19 @@
 {% extends "admin/base.html" %}
 {% load i18n %}
 
-{% block title %}{{ title }} | HSS Info Admin{% endblock %}
+{% block title %}{{ title }} | WWPHSS Info Admin{% endblock %}
 
 {# comment out for default #}
 {% block extrastyle %}
     <style>
 
         #header {
-            background-color: #009688  ;
-            border-bottom: solid 3px #fff;
+            background-color: #009688;
+        }
+
+        .breadcrumbs {
+           background-color: #009688  !important;
+           border-bottom: solid 3px #fff;
         }
 
         #branding h1 {
@@ -39,7 +43,7 @@
 {% endblock %}
 
 {% block branding %}
-    <h1 id="site-name">HSS Info</h1>
+    <h1 id="site-name">WW-P High School South Info</h1>
 {% endblock %}
 
 {% block nav-global %}{% endblock %}
