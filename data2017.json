@@ -1,0 +1,25 @@
+{
+  "teachers": [
+    {
+      "first": "Alba",
+      "last": "Wagar"
+    },
+    {
+      "first": "Alexa",
+      "last": "Swartz"
+    },
+    {
+      "first": "Alexander",
+      "last": "Krause"
+    }
+  ],
+
+  "sports" : [
+
+  ],
+
+  "clubs": [
+
+  ]
+
+}

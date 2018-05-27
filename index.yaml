@@ -27,3 +27,57 @@ indexes:
   - name: user_id
   - name: action_time
     direction: desc
+
+# Info
+
+- kind: info_sport
+  properties:
+  - name: name
+  - name: gender
+  - name: season
+  - name: coach
+  directon: desc
+
+- kind: info_club
+  properties:
+  - name: name
+  - name: description
+  - name: meeting_day
+  - name: location
+  - name: adviser
+  - name: email
+  directon: desc
+
+- kind: info_supermessage:
+  properties:
+  - name: heading
+  - name: message
+  - name: updated
+  direction: desc
+
+- kind: info_graph:
+  properties:
+  - name: title
+  - name: updated
+  direction: desc
+
+# graph entry
+
+- kind: info_teacher:
+  properties:
+  - name: first_name
+  - name: last_name
+  direction: desc
+
+- kind: info_board:
+  properties:
+  - name: timestamp
+  - name: announcements
+  - name: quote
+  - name: message_only
+  - name: message
+  - name: day
+  direction: desc
+
+# period
+# absent
