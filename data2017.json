@@ -27,7 +27,31 @@
   ],
   "clubs": [
     {
-      "name": "South Waksman Club",
+      "name": "Science Club",
+      "meeting_day": "F",
+      "location": "206",
+      "adviser": "Sharma, Sunila",
+      "email": "southscienceclub@gmail.com",
+      "description": "Club that competes in Science Bowls"
+    },
+    {
+      "name": "Science Olympiad",
+      "meeting_day": null,
+      "location": null,
+      "adviser": null,
+      "email": null,
+      "description": null
+    },
+    {
+      "name": "WWP Robotics",
+      "meeting_day": null,
+      "location": "HSN:UDH",
+      "adviser": "Kamen, Libby",
+      "email": "libby.kamen@wwprsd.org",
+      "description": "Shared FRC Robotics team between High School North and High School South"
+    },
+    {
+      "name": "Waksman Scientific Club",
       "meeting_day": "Tu",
       "location": "201",
       "adviser": "Bhattacharya, Meenakshi",
@@ -35,12 +59,436 @@
       "description": "Genetic sequencing club"
     },
     {
+      "name": "South MUN",
+      "meeting_day": null,
+      "location": null,
+      "adviser": null,
+      "email": null,
+      "description": null
+    },
+    {
+      "name": "Debate Club",
+      "meeting_day": null,
+      "location": null,
+      "adviser": "Levinson, Brian",
+      "email": null,
+      "description": null
+    },
+    {
+      "name": "Yearbook Club",
+      "meeting_day": null,
+      "location": "Library",
+      "adviser": null,
+      "email": null,
+      "description": "Club that makes the school yearbook"
+    },
+    {
+      "name": "Digital Photography Club",
+      "meeting_day": "Tu",
+      "location": "701A",
+      "adviser": null,
+      "email": null,
+      "description": "Digital Photography Club"
+    },
+    {
+      "name": "Hispanic Club",
+      "meeting_day": "Tu",
+      "location": "700C",
+      "adviser": null,
+      "email": null,
+      "description": "club to help unite hispanics"
+    },
+    {
+      "name": "Horticulture Club",
+      "meeting_day": "Tu",
+      "location": "700D",
+      "adviser": null,
+      "email": null,
+      "description": "plants club"
+    },
+    {
+      "name": "Women's Empowerment Initiative Club",
+      "meeting_day": "Tu",
+      "location": "700A",
+      "adviser": null,
+      "email": null,
+      "description": "hsswei@gmail.com"
+    },
+    {
+      "name": "Manga Production Club",
+      "meeting_day": "Tu",
+      "location": "700F",
+      "adviser": null,
+      "email": null,
+      "description": "Read and make manga club"
+    },
+    {
+      "name": "Absolute Coding Club",
+      "meeting_day": "W",
+      "location": "700A",
+      "adviser": null,
+      "email": "southabsolutecoding@gmail.com",
+      "description": "Solves USACO problems"
+    },
+    {
+      "name": "American Sign Language Club",
+      "meeting_day": "W",
+      "location": "700F",
+      "adviser": null,
+      "email": null,
+      "description": "teaches sign language"
+    },
+    {
+      "name": "Chess Club",
+      "meeting_day": "W",
+      "location": "700E",
+      "adviser": null,
+      "email": null,
+      "description": "teach chess strategies through playing chess"
+    },
+    {
+      "name": "Chinese Club",
+      "meeting_day": "W",
+      "location": "700C",
+      "adviser": null,
+      "email": null,
+      "description": "teach Chinese"
+    },
+    {
+      "name": "Creations for a Cause Club",
+      "meeting_day": "W",
+      "location": "701A",
+      "adviser": null,
+      "email": null,
+      "description": null
+    },
+    {
+      "name": "Fellowship of Christian Athletes Club",
+      "meeting_day": "W",
+      "location": "402",
+      "adviser": "Lunch",
+      "email": null,
+      "description": null
+    },
+    {
+      "name": "Investment Club",
+      "meeting_day": "W",
+      "location": "700D",
+      "adviser": null,
+      "email": "wwphss.investment@gmail.com",
+      "description": "teach investment strategies and go to competitions"
+    },
+    {
+      "name": "March of Dimes Club",
+      "meeting_day": "W",
+      "location": "800C",
+      "adviser": null,
+      "email": null,
+      "description": "Walk to prevent Birth Defects"
+    },
+    {
+      "name": "Public Speaking Club",
+      "meeting_day": "W",
+      "location": "701B",
+      "adviser": null,
+      "email": "southspeechclub@gmail.com",
+      "description": "Teaches public speaking for both ESL students and kids who want help speaking"
+    },
+    {
+      "name": "TED-Ed Club",
+      "meeting_day": "W",
+      "location": "Pit",
+      "adviser": null,
+      "email": null,
+      "description": null
+    },
+    {
+      "name": "WW-P Computer Engineering Club",
+      "meeting_day": "W",
+      "location": "700B",
+      "adviser": null,
+      "email": "wwpcomputerengineeringclub@gmail.com",
+      "description": null
+    },
+    {
+      "name": "Ambassadors for Autism Club",
+      "meeting_day": "Th",
+      "location": "700A",
+      "adviser": null,
+      "email": "ambassadorsforautism@gmail.com",
+      "description": null
+    },
+    {
+      "name": "Black Student Club",
+      "meeting_day": "Th",
+      "location": "700B",
+      "adviser": null,
+      "email": null,
+      "description": "Helps unite Black students with others"
+    },
+    {
+      "name": "Environmental Club",
+      "meeting_day": "Th",
+      "location": "700C",
+      "adviser": null,
+      "email": "hssenvironmentalclub@gmail.com",
+      "description": "Work to make the Environment better"
+    },
+    {
+      "name": "The Meditation Club",
+      "meeting_day": "Th",
+      "location": "701A",
+      "adviser": null,
+      "email": "hssmeditationclub@gmail.com",
+      "description": "Helps students meditate and relax"
+    },
+    {
+      "name": "Pirates Against Hunger Club",
+      "meeting_day": "Th",
+      "location": "701B",
+      "adviser": null,
+      "email": null,
+      "description": null
+    },
+    {
+      "name": "Pirates CS Innovators Club",
+      "meeting_day": "Th",
+      "location": "700E",
+      "adviser": null,
+      "email": "pirateinnovators@gmail.com",
+      "description": "Helps kids learn coding to make apps and attend hackathons"
+    },
+    {
+      "name": "Pirates for Paws Club",
+      "meeting_day": "Th",
+      "location": "700F",
+      "adviser": null,
+      "email": null,
+      "description": null
+    },
+    {
+      "name": "HSS Tutoring Desk",
+      "meeting_day": null,
+      "location": "Library",
+      "adviser": null,
+      "email": "southtutoringdesk@gmail.com ",
+      "description": "A club where kids can learn from other kids to help solidate their understanding"
+    },
+    {
+      "name": "One Acts Club",
+      "meeting_day": null,
+      "location": "Pit/Playhouse",
+      "adviser": null,
+      "email": null,
+      "description": null
+    },
+    {
+      "name": "HSS Tech Desk",
+      "meeting_day": null,
+      "location": "Library",
+      "adviser": null,
+      "email": "wwptechdesk@gmail.com",
+      "description": "Helps kids with technology-based problems"
+    },
+    {
+      "name": "SAASA",
+      "meeting_day": null,
+      "location": "Pit",
+      "adviser": null,
+      "email": "Southsaasa2017@gmail.com",
+      "description": "Indian Dancing Club"
+    },
+    {
+      "name": "Academic Decathlon",
+      "meeting_day": null,
+      "location": null,
+      "adviser": null,
+      "email": null,
+      "description": null
+    },
+    {
+      "name": "Class Council",
+      "meeting_day": null,
+      "location": null,
+      "adviser": null,
+      "email": null,
+      "description": "Student Government"
+    },
+    {
+      "name": "ECHOES Magazine",
+      "meeting_day": null,
+      "location": null,
+      "adviser": null,
+      "email": null,
+      "description": null
+    },
+    {
+      "name": "Fall Drama",
+      "meeting_day": null,
+      "location": null,
+      "adviser": null,
+      "email": null,
+      "description": "School Play"
+    },
+    {
+      "name": "Spring Musical",
+      "meeting_day": null,
+      "location": null,
+      "adviser": null,
+      "email": null,
+      "description": "School Musical"
+    },
+    {
+      "name": "First Edition",
+      "meeting_day": null,
+      "location": null,
+      "adviser": null,
+      "email": null,
+      "description": null
+    },
+    {
+      "name": "Future Educators of America",
+      "meeting_day": null,
+      "location": null,
+      "adviser": null,
+      "email": null,
+      "description": null
+    },
+    {
+      "name": "Future Problem Solvers",
+      "meeting_day": null,
+      "location": null,
+      "adviser": null,
+      "email": "south.fps@gmail.com",
+      "description": "Teaches kids to find ways to solve tomorrow’s problems today"
+    },
+    {
+      "name": "Gay-Straight Student Alliance",
+      "meeting_day": null,
+      "location": null,
+      "adviser": null,
+      "email": null,
+      "description": "SPECTRUM"
+    },
+    {
+      "name": "Jazz Band",
+      "meeting_day": null,
+      "location": null,
+      "adviser": null,
+      "email": null,
+      "description": "Jazz band"
+    },
+    {
+      "name": "Color Guard",
+      "meeting_day": null,
+      "location": null,
+      "adviser": null,
+      "email": null,
+      "description": null
+    },
+    {
+      "name": "Junior Statesmen of America",
+      "meeting_day": null,
+      "location": null,
+      "adviser": null,
+      "email": null,
+      "description": null
+    },
+    {
+      "name": "Marching Band",
+      "meeting_day": null,
+      "location": null,
+      "adviser": null,
+      "email": null,
+      "description": null
+    },
+    {
       "name": "South Math Club",
       "meeting_day": "Tu",
       "location": "600E",
       "adviser": "Swartz, Alexa",
       "email": "southmathclub@gmail.com",
-      "description": "Math"
+      "description": "Helps kids prepare for Math competitions"
+    },
+    {
+      "name": "Model United Nations",
+      "meeting_day": null,
+      "location": null,
+      "adviser": "Borsuk, Brad",
+      "email": "piratemun@gmail.com",
+      "description": null
+    },
+    {
+      "name": "National History Day",
+      "meeting_day": null,
+      "location": null,
+      "adviser": "Garzio, Michael",
+      "email": "nhd.south@gmail.com",
+      "description": "National History Day is a challenging, nationwide competition in which students create a research project for presentation at regional, state, and national levels."
+    },
+    {
+      "name": "National Honor Society",
+      "meeting_day": null,
+      "location": null,
+      "adviser": null,
+      "email": null,
+      "description": null
+    },
+    {
+      "name": "Peer Counseling",
+      "meeting_day": null,
+      "location": "Study Hall",
+      "adviser": null,
+      "email": null,
+      "description": "Helps Kids be more social"
+    },
+    {
+      "name": "Pirate's Eye Newspaper",
+      "meeting_day": null,
+      "location": null,
+      "adviser": null,
+      "email": null,
+      "description": "School Newspaper"
+    },
+    {
+      "name": "Pirate Players",
+      "meeting_day": null,
+      "location": null,
+      "adviser": null,
+      "email": null,
+      "description": null
+    },
+    {
+      "name": "Project Pride",
+      "meeting_day": null,
+      "location": null,
+      "adviser": "Fitzpatrick, Beth",
+      "email": null,
+      "description": "Helps middle-schooler Kids be more social"
+    },
+    {
+      "name": "Radio Station",
+      "meeting_day": "Tu",
+      "location": "500A",
+      "adviser": "Allison, Glenn",
+      "email": "wwp1079fm@gmail.com",
+      "description": null
+    },
+    {
+      "name": "Red Cross Club",
+      "meeting_day": null,
+      "location": null,
+      "adviser": null,
+      "email": null,
+      "description": null
+    },
+    {
+      "name": "Relay for Life",
+      "meeting_day": null,
+      "location": null,
+      "adviser": null,
+      "email": null,
+      "description": "A relay against cancer through the American Cancer Society"
     }
   ],
   "teachers": [
