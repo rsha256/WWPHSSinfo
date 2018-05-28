@@ -3,181 +3,181 @@
  {
 "name": "football",
       "gender": "B",
-      "season": null,
+      "season": "F",
       "coach": null
     },
 {
 "name": "soccer",
       "gender": "G",
-      "season": null,
+      "season": "F",
       "coach": null
     },
 {
 "name": "soccer",
       "gender": "B",
-      "season": null,
+      "season": "F",
       "coach": null
     },
 {
 "name": "field hockey",
       "gender": "G",
-      "season": null,
+      "season": "F",
       "coach": null
     },
 {
 "name": "cross-country",
       "gender": "B",
-      "season": null,
+      "season": "F",
       "coach": null
     },
 {
 "name": "tennis",
       "gender": "G",
-      "season": null,
+      "season": "S",
       "coach": null
     },
 {
 "name": "basketball",
       "gender": "B",
-      "season": null,
+      "season": "W",
       "coach": null
     },
 {
 "name": "cross-country",
       "gender": "G",
-      "season": null,
+      "season": "F",
       "coach": null
     },
 {
 "name": "wrestling",
       "gender": "B",
-      "season": null,
+      "season": "W",
       "coach": null
     },
 {
 "name": "volleyball",
       "gender": "G",
-      "season": null,
+      "season": "W",
       "coach": null
     },
 {
 "name": "swimming",
       "gender": "B",
-      "season": null,
+      "season": "W",
       "coach": null
     },
 {
 "name": "basketball",
       "gender": "G",
-      "season": null,
+      "season": "W",
       "coach": null
     },
 {
 "name": "diving",
       "gender": "B",
-      "season": null,
+      "season": "W",
       "coach": null
     },
 {
 "name": "swimming",
       "gender": "G",
-      "season": null,
+      "season": "W",
       "coach": null
     },
 {
 "name": "winter track",
       "gender": "B",
-      "season": null,
+      "season": "W",
       "coach": null
     },
 {
 "name": "diving",
       "gender": "G",
-      "season": null,
+      "season": "W",
       "coach": null
     },
 {
 "name": "ice hockey",
       "gender": "B",
-      "season": null,
+      "season": "W",
       "coach": null
     },
 {
 "name": "winter track",
       "gender": "G",
-      "season": null,
+      "season": "W",
       "coach": null
     },
 {
 "name": "fencing",
       "gender": "B",
-      "season": null,
+      "season": "W",
       "coach": null
     },
 {
 "name": "fencing",
       "gender": "G",
-      "season": null,
+      "season": "W",
       "coach": null
     },
 {
 "name": "baseball",
       "gender": "B",
-      "season": null,
+      "season": "S",
       "coach": null
     },
 {
 "name": "softball",
       "gender": "G",
-      "season": null,
+      "season": "S",
       "coach": null
     },
 {
 "name": "spring track",
       "gender": "B",
-      "season": null,
+      "season": "S",
       "coach": null
     },
 {
 "name": "spring track",
       "gender": "G",
-      "season": null,
+      "season": "S",
       "coach": null
     },
 {
 "name": "tennis",
       "gender": "B",
-      "season": null,
+      "season": "S",
       "coach": null
     },
 {
 "name": "lacrosse",
       "gender": "G",
-      "season": null,
+      "season": "S",
       "coach": null
     },
 {
 "name": "lacrosse",
       "gender": "B",
-      "season": null,
+      "season": "S",
       "coach": null
     },
 {
 "name": "golf",
       "gender": "G",
-      "season": null,
+      "season": "S",
       "coach": null
     },
 {
 "name": "golf",
       "gender": "B",
-      "season": null,
+      "season": "S",
       "coach": null
     },
 {
 "name": "volleyball",
       "gender": "B",
-      "season": null,
+      "season": "W",
       "coach": null
     }
   ],
