@@ -68,6 +68,6 @@ class ApplicationSettings(ndb.Model):
     value = ndb.StringProperty(required=True)
 
 
-SECRET_KEY = ApplicationSettings.query(ApplicationSettings.name == 'SECRET_KEY').get()
-GAUTH_KEY = ApplicationSettings.query(ApplicationSettings.name == 'GAUTH_KEY').get()
-GAUTH_SECRET = ApplicationSettings.query(ApplicationSettings.name == 'GAUTH_SECRET').get()
+SECRET_KEY = ApplicationSettings.query(ApplicationSettings.name == 'SECRET_KEY').get().value
+GAUTH_KEY = ApplicationSettings.query(ApplicationSettings.name == 'GAUTH_KEY').get().value
+GAUTH_SECRET = ApplicationSettings.query(ApplicationSettings.name == 'GAUTH_SECRET').get().value

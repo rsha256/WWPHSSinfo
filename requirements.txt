@@ -1,8 +1,8 @@
-Django==1.11
+Django==1.11.18
+djangae
 django-htmlmin
-python-pptx
 python-dateutil
 google
 google-auth
+requests_toolbelt
 requests
-

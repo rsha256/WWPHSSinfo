@@ -5,12 +5,13 @@ Imports other view files.
 
 """
 
+from django.http import HttpResponse
+from django.http import JsonResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
+from htmlmin.decorators import not_minified_response
 
 from WWPHSSinfo import settings
-
 from info.handlers import gauth_handler
-
 from info.view.auth_views import *
 from info.view.board_views import *
 from info.view.staff_views import *
@@ -66,6 +67,18 @@ def activities(request):
         })
 
     return redirect('/')
+
+@not_minified_response
+def api(request):
+    try:
+        data = board_handler.to_dict(board_handler.get_today())
+        data["super_msg"] = dict(super_message_get())
+        data["graph"] = dict(graph_get())
+    except:
+        data = {}
+
+    return JsonResponse(data)
+
 
 
 def createsuperuser(request):

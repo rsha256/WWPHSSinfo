@@ -27,7 +27,7 @@ DEBUG = not PRODUCTION
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'America/New_York'
+TIME_ZONE = 'Etc/UTC'
 
 USE_I18N = True
 

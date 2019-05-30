@@ -1,26 +1,5 @@
 indexes:
 
-- kind: djangae_gaedatastoreuser
-  properties:
-  - name: __key__
-    direction: desc
-
-- kind: djangae_group
-  properties:
-  - name: __key__
-    direction: desc
-
-- kind: auth_user
-  properties:
-  - name: username
-  - name: __key__
-    direction: desc
-
-- kind: auth_group
-  properties:
-  - name: name
-  - name: __key__
-    direction: desc
 
 - kind: django_admin_log
   properties:
@@ -28,56 +7,72 @@ indexes:
   - name: action_time
     direction: desc
 
-# Info
 
-- kind: info_sport
+- kind: django_session
   properties:
-  - name: name
-  - name: gender
-  - name: season
-  - name: coach
-  directon: desc
+  - name: __key__
+    direction: desc
+
+
+- kind: djangae_gaedatastoreuser
+  properties:
+  - name: __key__
+    direction: desc
+
+
+- kind: info_absent
+  properties:
+  - name: board_id
+  - name: __key__
+    direction: desc
+
+
+- kind: info_board
+  properties:
+  - name: timestamp
+    direction: desc
+  - name: __key__
+    direction: desc
+
 
 - kind: info_club
   properties:
-  - name: name
-  - name: description
-  - name: meeting_day
-  - name: location
-  - name: adviser
-  - name: email
-  directon: desc
+  - name: __key__
+    direction: desc
 
-- kind: info_supermessage:
+
+- kind: info_graphentry
   properties:
-  - name: heading
-  - name: message
-  - name: updated
-  direction: desc
+  - name: __key__
+    direction: desc
 
-- kind: info_graph:
+
+- kind: info_graph
   properties:
-  - name: title
-  - name: updated
-  direction: desc
+  - name: __key__
+    direction: desc
 
-# graph entry
 
-- kind: info_teacher:
+- kind: info_period
   properties:
-  - name: first_name
+  - name: board_id
+  - name: order
+
+
+- kind: info_sport
+  properties:
+  - name: __key__
+    direction: desc
+
+
+- kind: info_supermessage
+  properties:
+  - name: __key__
+    direction: desc
+
+
+- kind: info_teacher
+  properties:
   - name: last_name
-  direction: desc
-
-- kind: info_board:
-  properties:
-  - name: timestamp
-  - name: announcements
-  - name: quote
-  - name: message_only
-  - name: message
-  - name: day
-  direction: desc
-
-# period
-# absent
+  - name: __key__
+    direction: desc

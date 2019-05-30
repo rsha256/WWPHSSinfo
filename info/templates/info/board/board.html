@@ -1,5 +1,9 @@
 {% now "Y-m-d" as current_date %}
 
+<!--
+{{current_date}} |||| {{data.board.timestamp|date:"Y-m-d"}} \\\
+{{data.board.timestamp}}
+-->
 
 <!-- Out of date warning -->
 {% if data.board.timestamp|date:"Y-m-d" != current_date and not suppress_outdated_warning %}

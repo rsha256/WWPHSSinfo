@@ -148,7 +148,7 @@ class Board(models.Model):
     Data for a board entry
     """
 
-    timestamp = models.DateTimeField(default=now)
+    timestamp = models.DateField()
     announcements = models.TextField(null=True)
     quote = models.TextField(null=True)
 
@@ -166,7 +166,7 @@ class Board(models.Model):
     day = models.CharField(max_length=5, choices=DAY_CHOICES, default=None, null=True)
 
     def __str__(self):
-        return str(self.timestamp.date())
+        return str(self.timestamp)
 
 
 class Period(models.Model):
@@ -182,7 +182,7 @@ class Period(models.Model):
     end_time = models.CharField(max_length=150)
 
     def __str__(self):
-        return str(self.board.timestamp.date())
+        return str(self.board.timestamp)
 
 
 class Absent(models.Model):

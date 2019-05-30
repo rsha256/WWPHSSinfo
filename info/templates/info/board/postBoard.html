@@ -19,8 +19,6 @@
                     This is the board, live on the site. <br> You are seeing this because a board has already been
                     posted for today. <br>
 
-                    <a href="{% url 'info:download_pptx' data.board.timestamp|date:"Y-m-d" %}">Download pptx</a>
-
                     <span class="right">
                         <button class="btn tooltipped z-depth-3" data-position="bottom" data-delay="50"
                                 data-tooltip="Edit"
@@ -497,6 +495,7 @@
                 type: 'text',
                 name: 'teacherHours[]',
                 class: 'inline validate hour-autocomplete',
+                value: 'Full Day',
                 autocomplete: 'off',
             });
             hoursInput.appendTo(hoursTH);

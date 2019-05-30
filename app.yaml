@@ -1,5 +1,5 @@
 application: wwphssinfo
-version: 2018
+version: slp
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -33,4 +33,6 @@ skip_files:
 - ^(.*/)?\..*$
 - ^env/.*$
 #- ^*.sqlite3$
+#- ^*.log$
+
 

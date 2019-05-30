@@ -73,12 +73,18 @@
                         try {
                             var response = JSON.parse(xhr.responseText);
                             if (xhr.status === 200 && response.auth === 'OK') {
+                                console.log(response.auth);
                                 window.location.reload(true);
                             } else {
-
+                                console.log(xhr.status);
                             }
                         }
                         catch (exception) {
+                            console.log(exception + " " + response);
+                            var em = googleUser.getBasicProfile().getEmail();
+                            if(em.endsWith("@wwprsd.org")) {
+                                window.location.reload(true);
+                            }
                             document.getElementById("err").innerHTML =
                                 "The page will not load unless an <b>@wwprsd</B> account is logged in. " +
                                 "If you cannot see the board despite clicking the button, try logging out of all other accounts." +
@@ -88,6 +94,7 @@
                 };
 
                 xhr.send('idtoken=' + id_token);
+
             }
 
             function signOut() {

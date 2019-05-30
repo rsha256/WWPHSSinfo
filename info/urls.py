@@ -19,13 +19,14 @@ urlpatterns = [
     url(r'^staff/archive/$', views.archive, name='archive'),
     url(r'^staff/archive/(?P<date>[\w\-]+)/$', views.archive, name='archive'),
 
-    url(r'^staff/download_pptx/(?P<date>[\w\-]+)/$', views.download_pptx, name='download_pptx'),
 
     url(r'^staff/super_message/post$', views.super_message_post, name='super_message_post'),
     url(r'^staff/super_message/delete$', views.super_message_delete, name='super_message_delete'),
 
     url(r'^staff/graph/post$', views.graph_post, name='graph_post'),
     url(r'^staff/graph/delete$', views.graph_delete, name='graph_delete'),
+
+    url(r'^api/$', views.api, name='api'),
 
 
     url(r'^createsuperuser/$', views.createsuperuser, name='createsuperuser'),

@@ -6,7 +6,7 @@ from info import models
 
 def get_date(date):
     date = date_parser.parse(date)
-    board = models.Board.objects.filter(timestamp__date=date)[0]
+    board = models.Board.objects.filter(timestamp=date)[0]
     schedule = models.Period.objects.filter(board=board).order_by('order')
     absents = models.Absent.objects.filter(board=board)
 
@@ -32,7 +32,7 @@ def get_latest():
 
 
 def today_exists():
-    board = models.Board.objects.filter(timestamp__date=date.today())
+    board = models.Board.objects.filter(timestamp=date.today())
     return board.exists()
 
 
@@ -44,7 +44,7 @@ def handle(data):
 
 
 def __update_current(data):
-    board = models.Board.objects.filter(timestamp__date=date.today())
+    board = models.Board.objects.filter(timestamp=date.today())
     board.delete()
     __post_new(data)
 
